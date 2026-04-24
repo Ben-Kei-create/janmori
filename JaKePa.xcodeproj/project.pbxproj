@@ -21,12 +21,12 @@
 		CC0000000000000000000002 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000005 /* FirebaseService.swift */; };
 		CC0000000000000000000003 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000006 /* SettingsView.swift */; };
 		CC0000000000000000000007 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000008 /* GoogleService-Info.plist */; };
+		DD000000000000000000FF04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF02 /* FirebaseAuth */; };
+		DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF03 /* FirebaseDatabase */; };
 		EE0000000000000000000001 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000004 /* HapticManager.swift */; };
 		EE0000000000000000000002 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* ThemeManager.swift */; };
 		EE0000000000000000000003 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* StatsManager.swift */; };
 		EE0000000000000000000007 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* StatsView.swift */; };
-		DD000000000000000000FF04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF02 /* FirebaseAuth */; };
-		DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF03 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +64,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA000000000000000000000B /* JaKePa */ = {
+		AA000000000000000000000B = {
 			isa = PBXGroup;
 			children = (
 				AA000000000000000000001C /* JaKePa */,
@@ -161,10 +161,10 @@
 				Base,
 			);
 			mainGroup = AA000000000000000000000B;
-			productRefGroup = AA000000000000000000000C /* Products */;
 			packageReferences = (
 				DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
+			productRefGroup = AA000000000000000000000C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -210,30 +210,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "10.0.0";
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		DD000000000000000000FF02 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		DD000000000000000000FF03 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA0000000000000000000011 /* Debug */ = {
@@ -360,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JaKePa/Preview Content\"";
+				DEVELOPMENT_TEAM = 7R927F3U4V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -372,7 +349,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.benkei.JaKePa";
+				PRODUCT_BUNDLE_IDENTIFIER = com.benkei.JaKePa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -388,6 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JaKePa/Preview Content\"";
+				DEVELOPMENT_TEAM = 7R927F3U4V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -400,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.benkei.JaKePa";
+				PRODUCT_BUNDLE_IDENTIFIER = com.benkei.JaKePa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -431,6 +409,29 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD000000000000000000FF02 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DD000000000000000000FF03 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AA000000000000000000000A /* Project object */;
 }
