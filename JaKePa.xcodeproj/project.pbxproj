@@ -17,6 +17,12 @@
 		BB000000000000000000000C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* HomeView.swift */; };
 		BB000000000000000000000D /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* RoomView.swift */; };
 		BB000000000000000000000E /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* ResultsView.swift */; };
+		CC0000000000000000000001 /* NameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000004 /* NameFilter.swift */; };
+		CC0000000000000000000002 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000005 /* FirebaseService.swift */; };
+		CC0000000000000000000003 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000006 /* SettingsView.swift */; };
+		CC0000000000000000000007 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000008 /* GoogleService-Info.plist */; };
+		DD000000000000000000FF04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF02 /* FirebaseAuth */; };
+		DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF03 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,10 @@
 		BB0000000000000000000004 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BB0000000000000000000005 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		BB0000000000000000000006 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		CC0000000000000000000004 /* NameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFilter.swift; sourceTree = "<group>"; };
+		CC0000000000000000000005 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		CC0000000000000000000006 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CC0000000000000000000008 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD000000000000000000FF04 /* FirebaseAuth in Frameworks */,
+				DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +83,10 @@
 				BB0000000000000000000004 /* HomeView.swift */,
 				BB0000000000000000000005 /* RoomView.swift */,
 				BB0000000000000000000006 /* ResultsView.swift */,
+				CC0000000000000000000004 /* NameFilter.swift */,
+				CC0000000000000000000005 /* FirebaseService.swift */,
+				CC0000000000000000000006 /* SettingsView.swift */,
+				CC0000000000000000000008 /* GoogleService-Info.plist */,
 				AA000000000000000000001A /* Assets.xcassets */,
 				AA000000000000000000001D /* Preview Content */,
 			);
@@ -101,6 +117,10 @@
 			dependencies = (
 			);
 			name = JaKePa;
+			packageProductDependencies = (
+				DD000000000000000000FF02 /* FirebaseAuth */,
+				DD000000000000000000FF03 /* FirebaseDatabase */,
+			);
 			productName = JaKePa;
 			productReference = AA0000000000000000000017 /* JaKePa.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +150,9 @@
 			);
 			mainGroup = AA000000000000000000000B;
 			productRefGroup = AA000000000000000000000C /* Products */;
+			packageReferences = (
+				DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -145,6 +168,7 @@
 			files = (
 				AA0000000000000000000021 /* Preview Assets.xcassets in Resources */,
 				AA0000000000000000000020 /* Assets.xcassets in Resources */,
+				CC0000000000000000000007 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,10 +187,37 @@
 				BB000000000000000000000C /* HomeView.swift in Sources */,
 				BB000000000000000000000D /* RoomView.swift in Sources */,
 				BB000000000000000000000E /* ResultsView.swift in Sources */,
+				CC0000000000000000000001 /* NameFilter.swift in Sources */,
+				CC0000000000000000000002 /* FirebaseService.swift in Sources */,
+				CC0000000000000000000003 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "10.0.0";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD000000000000000000FF02 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DD000000000000000000FF03 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA0000000000000000000011 /* Debug */ = {

@@ -6,7 +6,9 @@ struct HomeView: View {
     private enum Dest: Hashable { case room }
     @State private var navigateTo: Dest?
     @State private var joinCode = ""
+    @State private var showSettings = false
     @State private var showJoinSheet = false
+    @State private var joinError: String? = nil
 
     var body: some View {
         NavigationStack {
@@ -16,7 +18,6 @@ struct HomeView: View {
                 VStack(spacing: 40) {
                     Spacer()
 
-                    // Logo
                     VStack(spacing: 6) {
                         Text("JaKePa")
                             .font(.system(size: 60, weight: .black, design: .rounded))
@@ -43,8 +44,7 @@ struct HomeView: View {
                     VStack(spacing: 16) {
                         Button {
                             appState.isHost = true
-                            appState.reset()
-                            navigateTo = .room
+                            showSettings = true
                         } label: {
                             Label("ルームを作る", systemImage: "plus.circle.fill")
                                 .font(.title2.bold())
@@ -55,9 +55,7 @@ struct HomeView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                         }
 
-                        Button {
-                            showJoinSheet = true
-                        } label: {
+                        Button { showJoinSheet = true } label: {
                             Label("ルームに入る", systemImage: "arrow.right.circle.fill")
                                 .font(.title2.bold())
                                 .frame(maxWidth: .infinity)
@@ -70,19 +68,50 @@ struct HomeView: View {
                     .padding(.horizontal, 32)
                     .padding(.bottom, 60)
                 }
+
+                if appState.isLoading {
+                    Color.black.opacity(0.3).ignoresSafeArea()
+                    ProgressView("接続中...")
+                        .padding(24)
+                        .background(.regularMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                }
             }
-            .navigationDestination(item: $navigateTo) { _ in
-                RoomView()
-            }
-            .sheet(isPresented: $showJoinSheet) {
-                JoinRoomSheet(joinCode: $joinCode) {
-                    appState.isHost = false
-                    appState.reset()
-                    showJoinSheet = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            .navigationDestination(item: $navigateTo) { _ in RoomView() }
+            // Host: settings sheet → creates room → navigate
+            .sheet(isPresented: $showSettings) {
+                SettingsView {
+                    showSettings = false
+                    if !appState.roomCode.isEmpty {
                         navigateTo = .room
                     }
                 }
+            }
+            // Guest: join sheet
+            .sheet(isPresented: $showJoinSheet) {
+                JoinRoomSheet(joinCode: $joinCode, error: $joinError) {
+                    Task {
+                        appState.isHost = false
+                        let ok = await appState.joinRoom(code: joinCode)
+                        if ok {
+                            joinCode = ""
+                            showJoinSheet = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                navigateTo = .room
+                            }
+                        } else {
+                            joinError = appState.errorMessage ?? "参加できませんでした"
+                        }
+                    }
+                }
+            }
+            .alert("エラー", isPresented: Binding(
+                get: { appState.errorMessage != nil && !showJoinSheet },
+                set: { if !$0 { appState.errorMessage = nil } }
+            )) {
+                Button("OK") { appState.errorMessage = nil }
+            } message: {
+                Text(appState.errorMessage ?? "")
             }
         }
     }
@@ -91,7 +120,9 @@ struct HomeView: View {
 // MARK: - Join Room Sheet
 
 struct JoinRoomSheet: View {
+    @EnvironmentObject var appState: AppState
     @Binding var joinCode: String
+    @Binding var error: String?
     let onJoin: () -> Void
 
     var body: some View {
@@ -104,14 +135,28 @@ struct JoinRoomSheet: View {
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 32, weight: .bold, design: .monospaced))
                     .textInputAutocapitalization(.characters)
+                    .autocorrectionDisabled()
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
 
-                Button("入室する！") { onJoin() }
+                if let err = error {
+                    Text(err)
+                        .foregroundStyle(.red)
+                        .font(.subheadline)
+                }
+
+                if appState.isLoading {
+                    ProgressView("確認中...")
+                } else {
+                    Button("入室する！") {
+                        error = nil
+                        onJoin()
+                    }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .tint(.purple)
                     .disabled(joinCode.trimmingCharacters(in: .whitespaces).count < 4)
+                }
 
                 Spacer()
             }

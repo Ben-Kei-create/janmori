@@ -5,6 +5,7 @@ struct RoomView: View {
     @State private var chatText = ""
     @State private var showStampPanel = false
     @State private var showQRSheet = false
+    @State private var showNameChange = false
     @State private var goToResults = false
 
     var body: some View {
@@ -17,6 +18,18 @@ struct RoomView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         RoomCodeBadge(code: appState.roomCode, onTap: { showQRSheet = true })
+
+                        // Names locked banner
+                        if appState.namesLocked {
+                            Label("名前の変更がロックされました🔒", systemImage: "lock.fill")
+                                .font(.subheadline.bold())
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(.red.opacity(0.8))
+                                .clipShape(Capsule())
+                        }
+
                         PlayerGridSection()
                         if appState.phase != .revealed {
                             HandSelectionSection()
@@ -27,10 +40,13 @@ struct RoomView: View {
                 }
 
                 ChatInputBar(chatText: $chatText)
-                BottomActionBar(showStampPanel: $showStampPanel, showQRSheet: $showQRSheet)
+                BottomActionBar(
+                    showStampPanel: $showStampPanel,
+                    showQRSheet: $showQRSheet,
+                    showNameChange: $showNameChange
+                )
             }
 
-            // Overlays (layered on top)
             ChatBubblesOverlay()
             FloatingStampsLayer()
 
@@ -51,9 +67,21 @@ struct RoomView: View {
         .toolbar {
             if appState.isHost && appState.phase == .lobby {
                 ToolbarItem(placement: .primaryAction) {
-                    Button("スタート！") { appState.startTimer() }
-                        .bold()
-                        .tint(.orange)
+                    Menu {
+                        Button("スタート！") { appState.startTimer() }
+                        if !appState.namesLocked {
+                            Button("名前をロック🔒") { appState.lockNames() }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle.fill")
+                            .foregroundStyle(.orange)
+                    }
+                }
+            }
+            if appState.phase == .playing && appState.isHost {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("今すぐ発表") { appState.revealHands() }
+                        .tint(.red)
                 }
             }
             if appState.phase == .revealed {
@@ -69,6 +97,9 @@ struct RoomView: View {
         }
         .sheet(isPresented: $showQRSheet) {
             QRCodeSheet(roomCode: appState.roomCode)
+        }
+        .sheet(isPresented: $showNameChange) {
+            NameChangeSheet()
         }
         .animation(.spring(response: 0.35, dampingFraction: 0.65), value: appState.announcement?.id)
         .animation(.spring(response: 0.35, dampingFraction: 0.7), value: showStampPanel)
@@ -346,24 +377,35 @@ private struct BottomActionBar: View {
     @EnvironmentObject var appState: AppState
     @Binding var showStampPanel: Bool
     @Binding var showQRSheet: Bool
+    @Binding var showNameChange: Bool
+
+    private var canChangeName: Bool {
+        guard !appState.namesLocked else { return false }
+        guard let me = appState.myPlayer else { return false }
+        return appState.settings.maxNameChanges == 0
+            || me.nameChangeCount < appState.settings.maxNameChanges
+    }
 
     var body: some View {
         HStack(spacing: 12) {
-            // いいね！
             ActionButton(emoji: "👍", label: "いいね！", color: .yellow) {
                 appState.sendLike()
             }
 
-            // スタンプ
             ActionButton(emoji: "😄", label: "スタンプ", color: .pink) {
                 withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
                     showStampPanel.toggle()
                 }
             }
 
+            if canChangeName {
+                ActionButton(systemImage: "pencil.circle.fill", label: "名前変更", color: .green) {
+                    showNameChange = true
+                }
+            }
+
             Spacer()
 
-            // QR
             ActionButton(systemImage: "qrcode", label: "QRコード", color: .blue) {
                 showQRSheet = true
             }
@@ -396,6 +438,74 @@ private struct ActionButton: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Name Change Sheet
+
+struct NameChangeSheet: View {
+    @EnvironmentObject var appState: AppState
+    @Environment(\.dismiss) var dismiss
+    @State private var newName = ""
+    @State private var errorMsg: String? = nil
+
+    private var remaining: Int {
+        let max = appState.settings.maxNameChanges
+        guard max > 0 else { return 99 }
+        let used = appState.myPlayer?.nameChangeCount ?? 0
+        return max - used
+    }
+
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                if let me = appState.myPlayer {
+                    Text("いまの名前: \(me.displayName)")
+                        .foregroundStyle(.secondary)
+                }
+
+                if appState.settings.maxNameChanges > 0 {
+                    Text("残り\(remaining)回変更できます")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+
+                TextField("新しい名前", text: $newName)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                    .onChange(of: newName) { _ in errorMsg = nil }
+
+                if let err = errorMsg {
+                    Text(err)
+                        .foregroundStyle(.red)
+                        .font(.subheadline)
+                }
+
+                Button("変更する") {
+                    if let err = appState.changeName(newName) {
+                        errorMsg = err
+                    } else {
+                        dismiss()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                .disabled(newName.trimmingCharacters(in: .whitespaces).isEmpty)
+
+                Spacer()
+            }
+            .padding(.top, 32)
+            .navigationTitle("名前を変える")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("キャンセル") { dismiss() }
+                }
+            }
+        }
+        .presentationDetents([.medium])
     }
 }
 
