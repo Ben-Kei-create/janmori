@@ -3,129 +3,240 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AA000000000000000000001E /* JaKePaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000018 /* JaKePaApp.swift */; };
+		AA000000000000000000001F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000019 /* ContentView.swift */; };
+		AA0000000000000000000020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001A /* Assets.xcassets */; };
+		AA0000000000000000000021 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001B /* Preview Assets.xcassets */; };
+		BB0000000000000000000009 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* Models.swift */; };
+		BB000000000000000000000A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* AppState.swift */; };
+		BB000000000000000000000B /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Components.swift */; };
+		BB000000000000000000000C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* HomeView.swift */; };
+		BB000000000000000000000D /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* RoomView.swift */; };
+		BB000000000000000000000E /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* ResultsView.swift */; };
+		CC0000000000000000000001 /* NameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000004 /* NameFilter.swift */; };
+		CC0000000000000000000002 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000005 /* FirebaseService.swift */; };
+		CC0000000000000000000003 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000006 /* SettingsView.swift */; };
+		CC0000000000000000000007 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000008 /* GoogleService-Info.plist */; };
+		EE0000000000000000000001 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000004 /* HapticManager.swift */; };
+		EE0000000000000000000002 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* ThemeManager.swift */; };
+		EE0000000000000000000003 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* StatsManager.swift */; };
+		EE0000000000000000000007 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* StatsView.swift */; };
+		DD000000000000000000FF04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF02 /* FirebaseAuth */; };
+		DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF03 /* FirebaseDatabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		A5D94BA52F9BBE5E00EAD465 /* JaKePa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JaKePa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000017 /* JaKePa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JaKePa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000018 /* JaKePaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaKePaApp.swift; sourceTree = "<group>"; };
+		AA0000000000000000000019 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA000000000000000000001A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000000000000000000001B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BB0000000000000000000001 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BB0000000000000000000002 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BB0000000000000000000003 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		BB0000000000000000000004 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000005 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000006 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		CC0000000000000000000004 /* NameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameFilter.swift; sourceTree = "<group>"; };
+		CC0000000000000000000005 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		CC0000000000000000000006 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CC0000000000000000000008 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE0000000000000000000004 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000005 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000006 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000008 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		A5D94BA72F9BBE5E00EAD465 /* JaKePa */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = JaKePa;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		A5D94BA22F9BBE5E00EAD465 /* Frameworks */ = {
+		AA0000000000000000000010 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD000000000000000000FF04 /* FirebaseAuth in Frameworks */,
+				DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A5D94B9C2F9BBE5E00EAD465 = {
+		AA000000000000000000000B /* JaKePa */ = {
 			isa = PBXGroup;
 			children = (
-				A5D94BA72F9BBE5E00EAD465 /* JaKePa */,
-				A5D94BA62F9BBE5E00EAD465 /* Products */,
+				AA000000000000000000001C /* JaKePa */,
+				AA000000000000000000000C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A5D94BA62F9BBE5E00EAD465 /* Products */ = {
+		AA000000000000000000000C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5D94BA52F9BBE5E00EAD465 /* JaKePa.app */,
+				AA0000000000000000000017 /* JaKePa.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AA000000000000000000001C /* JaKePa */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000018 /* JaKePaApp.swift */,
+				AA0000000000000000000019 /* ContentView.swift */,
+				BB0000000000000000000001 /* Models.swift */,
+				BB0000000000000000000002 /* AppState.swift */,
+				BB0000000000000000000003 /* Components.swift */,
+				BB0000000000000000000004 /* HomeView.swift */,
+				BB0000000000000000000005 /* RoomView.swift */,
+				BB0000000000000000000006 /* ResultsView.swift */,
+				CC0000000000000000000004 /* NameFilter.swift */,
+				CC0000000000000000000005 /* FirebaseService.swift */,
+				CC0000000000000000000006 /* SettingsView.swift */,
+				CC0000000000000000000008 /* GoogleService-Info.plist */,
+				EE0000000000000000000004 /* HapticManager.swift */,
+				EE0000000000000000000005 /* ThemeManager.swift */,
+				EE0000000000000000000006 /* StatsManager.swift */,
+				EE0000000000000000000008 /* StatsView.swift */,
+				AA000000000000000000001A /* Assets.xcassets */,
+				AA000000000000000000001D /* Preview Content */,
+			);
+			path = JaKePa;
+			sourceTree = "<group>";
+		};
+		AA000000000000000000001D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000000001B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A5D94BA42F9BBE5E00EAD465 /* JaKePa */ = {
+		AA000000000000000000000D /* JaKePa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A5D94BB02F9BBE5F00EAD465 /* Build configuration list for PBXNativeTarget "JaKePa" */;
+			buildConfigurationList = AA0000000000000000000016 /* Build configuration list for PBXNativeTarget "JaKePa" */;
 			buildPhases = (
-				A5D94BA12F9BBE5E00EAD465 /* Sources */,
-				A5D94BA22F9BBE5E00EAD465 /* Frameworks */,
-				A5D94BA32F9BBE5E00EAD465 /* Resources */,
+				AA000000000000000000000E /* Sources */,
+				AA0000000000000000000010 /* Frameworks */,
+				AA000000000000000000000F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				A5D94BA72F9BBE5E00EAD465 /* JaKePa */,
-			);
 			name = JaKePa;
 			packageProductDependencies = (
+				DD000000000000000000FF02 /* FirebaseAuth */,
+				DD000000000000000000FF03 /* FirebaseDatabase */,
 			);
 			productName = JaKePa;
-			productReference = A5D94BA52F9BBE5E00EAD465 /* JaKePa.app */;
+			productReference = AA0000000000000000000017 /* JaKePa.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A5D94B9D2F9BBE5E00EAD465 /* Project object */ = {
+		AA000000000000000000000A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
-				LastUpgradeCheck = 2640;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A5D94BA42F9BBE5E00EAD465 = {
-						CreatedOnToolsVersion = 26.4.1;
+					AA000000000000000000000D = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = A5D94BA02F9BBE5E00EAD465 /* Build configuration list for PBXProject "JaKePa" */;
+			buildConfigurationList = AA0000000000000000000015 /* Build configuration list for PBXProject "JaKePa" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A5D94B9C2F9BBE5E00EAD465;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = A5D94BA62F9BBE5E00EAD465 /* Products */;
+			mainGroup = AA000000000000000000000B;
+			productRefGroup = AA000000000000000000000C /* Products */;
+			packageReferences = (
+				DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A5D94BA42F9BBE5E00EAD465 /* JaKePa */,
+				AA000000000000000000000D /* JaKePa */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A5D94BA32F9BBE5E00EAD465 /* Resources */ = {
+		AA000000000000000000000F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000000000000000000021 /* Preview Assets.xcassets in Resources */,
+				AA0000000000000000000020 /* Assets.xcassets in Resources */,
+				CC0000000000000000000007 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A5D94BA12F9BBE5E00EAD465 /* Sources */ = {
+		AA000000000000000000000E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA000000000000000000001F /* ContentView.swift in Sources */,
+				AA000000000000000000001E /* JaKePaApp.swift in Sources */,
+				BB0000000000000000000009 /* Models.swift in Sources */,
+				BB000000000000000000000A /* AppState.swift in Sources */,
+				BB000000000000000000000B /* Components.swift in Sources */,
+				BB000000000000000000000C /* HomeView.swift in Sources */,
+				BB000000000000000000000D /* RoomView.swift in Sources */,
+				BB000000000000000000000E /* ResultsView.swift in Sources */,
+				CC0000000000000000000001 /* NameFilter.swift in Sources */,
+				CC0000000000000000000002 /* FirebaseService.swift in Sources */,
+				CC0000000000000000000003 /* SettingsView.swift in Sources */,
+				EE0000000000000000000001 /* HapticManager.swift in Sources */,
+				EE0000000000000000000002 /* ThemeManager.swift in Sources */,
+				EE0000000000000000000003 /* StatsManager.swift in Sources */,
+				EE0000000000000000000007 /* StatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "10.0.0";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD000000000000000000FF02 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DD000000000000000000FF03 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD000000000000000000FF01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCBuildConfiguration section */
-		A5D94BAE2F9BBE5F00EAD465 /* Debug */ = {
+		AA0000000000000000000011 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -157,10 +268,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__DUPLICATE_METHOD_EXCEPTION = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 7R927F3U4V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -178,8 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -189,7 +298,7 @@
 			};
 			name = Debug;
 		};
-		A5D94BAF2F9BBE5F00EAD465 /* Release */ = {
+		AA0000000000000000000012 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -221,10 +330,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__DUPLICATE_METHOD_EXCEPTION = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7R927F3U4V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -236,9 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -246,92 +352,85 @@
 			};
 			name = Release;
 		};
-		A5D94BB12F9BBE5F00EAD465 /* Debug */ = {
+		AA0000000000000000000013 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R927F3U4V;
+				DEVELOPMENT_ASSET_PATHS = "\"JaKePa/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.JaKePa;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.benkei.JaKePa";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		A5D94BB22F9BBE5F00EAD465 /* Release */ = {
+		AA0000000000000000000014 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R927F3U4V;
+				DEVELOPMENT_ASSET_PATHS = "\"JaKePa/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.JaKePa;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.benkei.JaKePa";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A5D94BA02F9BBE5E00EAD465 /* Build configuration list for PBXProject "JaKePa" */ = {
+		AA0000000000000000000015 /* Build configuration list for PBXProject "JaKePa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A5D94BAE2F9BBE5F00EAD465 /* Debug */,
-				A5D94BAF2F9BBE5F00EAD465 /* Release */,
+				AA0000000000000000000011 /* Debug */,
+				AA0000000000000000000012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A5D94BB02F9BBE5F00EAD465 /* Build configuration list for PBXNativeTarget "JaKePa" */ = {
+		AA0000000000000000000016 /* Build configuration list for PBXNativeTarget "JaKePa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A5D94BB12F9BBE5F00EAD465 /* Debug */,
-				A5D94BB22F9BBE5F00EAD465 /* Release */,
+				AA0000000000000000000013 /* Debug */,
+				AA0000000000000000000014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
 	};
-	rootObject = A5D94B9D2F9BBE5E00EAD465 /* Project object */;
+	rootObject = AA000000000000000000000A /* Project object */;
 }

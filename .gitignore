@@ -1,0 +1,20 @@
+## Xcode user settings
+xcuserdata/
+
+## Build artifacts
+build/
+DerivedData/
+*.moved-aside
+
+## OS
+.DS_Store
+
+## Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
