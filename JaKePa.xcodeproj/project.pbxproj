@@ -11,6 +11,12 @@
 		AA000000000000000000001F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000019 /* ContentView.swift */; };
 		AA0000000000000000000020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001A /* Assets.xcassets */; };
 		AA0000000000000000000021 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001B /* Preview Assets.xcassets */; };
+		BB0000000000000000000009 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* Models.swift */; };
+		BB000000000000000000000A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* AppState.swift */; };
+		BB000000000000000000000B /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Components.swift */; };
+		BB000000000000000000000C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* HomeView.swift */; };
+		BB000000000000000000000D /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* RoomView.swift */; };
+		BB000000000000000000000E /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* ResultsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		AA0000000000000000000019 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA000000000000000000001A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA000000000000000000001B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BB0000000000000000000001 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BB0000000000000000000002 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BB0000000000000000000003 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		BB0000000000000000000004 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000005 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000006 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,12 @@
 			children = (
 				AA0000000000000000000018 /* JaKePaApp.swift */,
 				AA0000000000000000000019 /* ContentView.swift */,
+				BB0000000000000000000001 /* Models.swift */,
+				BB0000000000000000000002 /* AppState.swift */,
+				BB0000000000000000000003 /* Components.swift */,
+				BB0000000000000000000004 /* HomeView.swift */,
+				BB0000000000000000000005 /* RoomView.swift */,
+				BB0000000000000000000006 /* ResultsView.swift */,
 				AA000000000000000000001A /* Assets.xcassets */,
 				AA000000000000000000001D /* Preview Content */,
 			);
@@ -139,6 +157,12 @@
 			files = (
 				AA000000000000000000001F /* ContentView.swift in Sources */,
 				AA000000000000000000001E /* JaKePaApp.swift in Sources */,
+				BB0000000000000000000009 /* Models.swift in Sources */,
+				BB000000000000000000000A /* AppState.swift in Sources */,
+				BB000000000000000000000B /* Components.swift in Sources */,
+				BB000000000000000000000C /* HomeView.swift in Sources */,
+				BB000000000000000000000D /* RoomView.swift in Sources */,
+				BB000000000000000000000E /* ResultsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
