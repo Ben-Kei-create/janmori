@@ -21,6 +21,10 @@
 		CC0000000000000000000002 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000005 /* FirebaseService.swift */; };
 		CC0000000000000000000003 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000006 /* SettingsView.swift */; };
 		CC0000000000000000000007 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0000000000000000000008 /* GoogleService-Info.plist */; };
+		EE0000000000000000000001 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000004 /* HapticManager.swift */; };
+		EE0000000000000000000002 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* ThemeManager.swift */; };
+		EE0000000000000000000003 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* StatsManager.swift */; };
+		EE0000000000000000000007 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* StatsView.swift */; };
 		DD000000000000000000FF04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF02 /* FirebaseAuth */; };
 		DD000000000000000000FF05 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = DD000000000000000000FF03 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
@@ -41,6 +45,10 @@
 		CC0000000000000000000005 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		CC0000000000000000000006 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CC0000000000000000000008 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE0000000000000000000004 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000005 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000006 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
+		EE0000000000000000000008 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,10 @@
 				CC0000000000000000000005 /* FirebaseService.swift */,
 				CC0000000000000000000006 /* SettingsView.swift */,
 				CC0000000000000000000008 /* GoogleService-Info.plist */,
+				EE0000000000000000000004 /* HapticManager.swift */,
+				EE0000000000000000000005 /* ThemeManager.swift */,
+				EE0000000000000000000006 /* StatsManager.swift */,
+				EE0000000000000000000008 /* StatsView.swift */,
 				AA000000000000000000001A /* Assets.xcassets */,
 				AA000000000000000000001D /* Preview Content */,
 			);
@@ -190,6 +202,10 @@
 				CC0000000000000000000001 /* NameFilter.swift in Sources */,
 				CC0000000000000000000002 /* FirebaseService.swift in Sources */,
 				CC0000000000000000000003 /* SettingsView.swift in Sources */,
+				EE0000000000000000000001 /* HapticManager.swift in Sources */,
+				EE0000000000000000000002 /* ThemeManager.swift in Sources */,
+				EE0000000000000000000003 /* StatsManager.swift in Sources */,
+				EE0000000000000000000007 /* StatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,58 @@
 import SwiftUI
 
+// MARK: - Shake Effect
+
+struct ShakeEffect: GeometryEffect {
+    var amount: CGFloat = 8
+    var shakesPerUnit: Int = 4
+    var animatableData: CGFloat
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        let offset = amount * sin(animatableData * .pi * CGFloat(shakesPerUnit))
+        return ProjectionTransform(CGAffineTransform(translationX: offset, y: 0))
+    }
+}
+
+// MARK: - Confetti View
+
+struct ConfettiView: View {
+    @State private var particles: [ConfettiParticle] = []
+    @State private var animating = false
+
+    private let emojis = ["🎉", "⭐", "✨", "💫", "🌟", "✊", "✌️", "🖐️", "🎊"]
+
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                ForEach(particles) { p in
+                    Text(p.emoji)
+                        .font(.system(size: p.size))
+                        .opacity(animating ? 0 : 0.9)
+                        .offset(
+                            x: animating ? CGFloat(cos(p.angle)) * p.distance : 0,
+                            y: animating ? CGFloat(sin(p.angle)) * p.distance : 0
+                        )
+                        .position(x: geo.size.width / 2, y: geo.size.height / 2)
+                }
+            }
+        }
+        .allowsHitTesting(false)
+        .onAppear {
+            particles = (0..<24).map { i in
+                ConfettiParticle(
+                    emoji: emojis[i % emojis.count],
+                    angle: Double(i) * (2 * .pi / 24),
+                    distance: CGFloat.random(in: 80...180),
+                    size: CGFloat.random(in: 18...32)
+                )
+            }
+            withAnimation(.easeOut(duration: 0.9)) {
+                animating = true
+            }
+        }
+    }
+}
+
 // MARK: - Floating Hands Background
 
 struct FloatingHandsBackground: View {
@@ -74,7 +127,8 @@ struct FloatingHandItemView: View {
 // MARK: - Timer Bar
 
 struct TimerBar: View {
-    let progress: Double // 0.0 → 1.0
+    let progress: Double
+    var gradient: [Color] = [.orange, .pink, .purple]
 
     @State private var shimmerOffset: CGFloat = -1.0
 
@@ -87,7 +141,7 @@ struct TimerBar: View {
                 Capsule()
                     .fill(
                         LinearGradient(
-                            colors: [.orange, .pink, .purple],
+                            colors: gradient,
                             startPoint: .leading,
                             endPoint: .trailing
                         )

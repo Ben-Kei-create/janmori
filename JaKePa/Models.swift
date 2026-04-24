@@ -131,10 +131,23 @@ struct RoomSettings {
     var maxNameChanges: Int = 1
     var bubbleDurationSeconds: Int = 10
     var hostPlays: Bool = true
+    var rematchOnDraw: Bool = true
+    var sfxEnabled: Bool = true
+    var bgmEnabled: Bool = false
 }
 
 // MARK: - Game Phase
 
 enum GamePhase {
     case lobby, playing, revealed
+}
+
+// MARK: - Confetti Particle
+
+struct ConfettiParticle: Identifiable {
+    let id = UUID()
+    let emoji: String
+    let angle: Double
+    let distance: CGFloat
+    let size: CGFloat
 }

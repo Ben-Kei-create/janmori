@@ -17,9 +17,17 @@ class AppState: ObservableObject {
     @Published var namesLocked: Bool = false
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
+    @Published var roundNumber: Int = 1
+    @Published var showConfetti: Bool = false
 
     private var service: FirebaseService?
     private var timerTask: Task<Void, Never>?
+
+    // Stats tracking for current session
+    private var sessionRocks = 0
+    private var sessionScissors = 0
+    private var sessionPapers = 0
+    private var sessionWins = 0
 
     // true when Firebase is available (GoogleService-Info.plist is real)
     var isFirebaseMode: Bool { FirebaseApp.app() != nil }
@@ -135,9 +143,17 @@ class AppState: ObservableObject {
                 self.phase = .playing
                 self.timeRemaining = snap.settings.durationMinutes * 60
                 self.startLocalTimer()
+            case .playing where prevPhase == .revealed:
+                // Rematch after draw: host already wrote to Firebase, all clients react here
+                self.roundNumber += 1
+                withAnimation(.spring()) { self.phase = .playing }
+                self.timeRemaining = snap.settings.durationMinutes * 60
+                self.startLocalTimer()
             case .revealed where prevPhase != .revealed:
                 self.stopTimer()
+                HapticManager.handsRevealed()
                 withAnimation(.spring()) { self.phase = .revealed }
+                self.checkDrawAndScore()
             case .lobby where prevPhase != .lobby:
                 self.stopTimer()
                 self.phase = .lobby
@@ -239,6 +255,7 @@ class AppState: ObservableObject {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
             announcement = Announcement(text: text, isUrgent: urgent)
         }
+        HapticManager.announcement()
         Task {
             try? await Task.sleep(for: .seconds(3))
             withAnimation(.easeOut) { self.announcement = nil }
@@ -250,6 +267,7 @@ class AppState: ObservableObject {
     func selectHand(_ hand: Hand) {
         guard let idx = players.firstIndex(where: { $0.id == myPlayerId }) else { return }
         withAnimation(.spring(response: 0.3)) { players[idx].selectedHand = hand }
+        HapticManager.handSelected()
         if isFirebaseMode, let svc = service {
             Task { try? await svc.selectHand(hand) }
         }
@@ -272,6 +290,7 @@ class AppState: ObservableObject {
 
     func sendStamp(_ stamp: Stamp) {
         guard let me = myPlayer else { return }
+        HapticManager.stampSent()
         if isFirebaseMode, let svc = service {
             Task { try? await svc.sendStamp(emoji: stamp.rawValue, fromName: me.displayName) }
         } else {
@@ -309,7 +328,90 @@ class AppState: ObservableObject {
         for i in players.indices where players[i].selectedHand == .random {
             players[i].selectedHand = [.rock, .scissors, .paper].randomElement()
         }
+        HapticManager.handsRevealed()
         withAnimation(.spring()) { phase = .revealed }
+        checkDrawAndScore()
+    }
+
+    // MARK: - Draw / Score
+
+    private func isDrawRound() -> Bool {
+        let hands = Set(players.compactMap(\.selectedHand))
+        return hands.count == 1 || hands.count == 3
+    }
+
+    private func winningHand() -> Hand? {
+        let hands = Set(players.compactMap(\.selectedHand))
+        guard hands.count == 2 else { return nil }
+        if hands == [.rock, .scissors] { return .rock }
+        if hands == [.scissors, .paper] { return .scissors }
+        if hands == [.paper, .rock]     { return .paper }
+        return nil
+    }
+
+    func checkDrawAndScore() {
+        if isDrawRound() {
+            HapticManager.drawDetected()
+            triggerAnnouncement("あいこ！🤝", urgent: true)
+            if settings.rematchOnDraw {
+                if isFirebaseMode {
+                    // Only host writes rematch to Firebase; all clients react via observer
+                    if isHost, let svc = service {
+                        Task {
+                            try? await Task.sleep(for: .seconds(3.5))
+                            try? await svc.rematchRound()
+                        }
+                    }
+                } else {
+                    // Demo mode: handle locally
+                    Task {
+                        try? await Task.sleep(for: .seconds(3.5))
+                        self.roundNumber += 1
+                        for i in self.players.indices { self.players[i].selectedHand = nil }
+                        withAnimation(.spring()) { self.phase = .playing }
+                    }
+                }
+            }
+        } else {
+            // Update scores
+            if let winner = winningHand() {
+                for i in players.indices where players[i].selectedHand == winner {
+                    players[i].wins += 1
+                }
+                // Track my stats
+                if let me = myPlayer {
+                    switch me.selectedHand {
+                    case .rock:     sessionRocks += 1
+                    case .scissors: sessionScissors += 1
+                    case .paper:    sessionPapers += 1
+                    default: break
+                    }
+                    if me.selectedHand == winner { sessionWins += 1 }
+                }
+            }
+            withAnimation(.spring(response: 0.3)) { showConfetti = true }
+            Task {
+                try? await Task.sleep(for: .seconds(2))
+                showConfetti = false
+            }
+        }
+    }
+
+    func saveSessionStats() {
+        guard let me = myPlayer else { return }
+        let record = SessionRecord(
+            id: UUID(),
+            date: Date(),
+            roomCode: roomCode,
+            playerName: me.displayName,
+            animalEmoji: me.animal.emoji,
+            totalWins: sessionWins,
+            totalRounds: roundNumber,
+            rockCount: sessionRocks,
+            scissorsCount: sessionScissors,
+            paperCount: sessionPapers
+        )
+        StatsManager.shared.save(record)
     }
 
     func lockNames() {
@@ -356,6 +458,9 @@ class AppState: ObservableObject {
         timeRemaining = settings.durationMinutes * 60
         announcement = nil
         roomCode = ""
+        roundNumber = 1
+        showConfetti = false
+        sessionRocks = 0; sessionScissors = 0; sessionPapers = 0; sessionWins = 0
         if !isFirebaseMode { setupDemo() }
     }
 

@@ -162,6 +162,16 @@ class FirebaseService {
         try await ref.child("namesLocked").setValue(true)
     }
 
+    func rematchRound() async throws {
+        guard let ref = roomRef else { return }
+        let snap = try await ref.child("players").getData()
+        if let dict = snap.value as? [String: Any] {
+            var updates: [String: Any] = ["phase": "playing"]
+            for key in dict.keys { updates["players/\(key)/hand"] = NSNull() }
+            try await ref.updateChildValues(updates)
+        }
+    }
+
     func resetRoom(durationSeconds: Int) async throws {
         guard let ref = roomRef else { return }
         // Clear all hands

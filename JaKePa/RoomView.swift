@@ -50,6 +50,12 @@ struct RoomView: View {
             ChatBubblesOverlay()
             FloatingStampsLayer()
 
+            if appState.showConfetti {
+                ConfettiView()
+                    .transition(.opacity)
+                    .zIndex(98)
+            }
+
             if let ann = appState.announcement {
                 AnnouncementBubble(announcement: ann)
                     .transition(.scale(scale: 0.2).combined(with: .opacity))
@@ -110,6 +116,7 @@ struct RoomView: View {
 
 private struct TimerHeaderSection: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var themeManager: ThemeManager
 
     private var progress: Double {
         let total = Double(appState.settings.durationMinutes * 60)
@@ -129,6 +136,14 @@ private struct TimerHeaderSection: View {
                 Text(timeString)
                     .font(.system(size: 34, weight: .bold, design: .monospaced))
                 Spacer()
+                if appState.roundNumber > 1 {
+                    Text("第\(appState.roundNumber)ラウンド")
+                        .font(.caption.bold())
+                        .foregroundStyle(.orange)
+                        .padding(.horizontal, 8).padding(.vertical, 3)
+                        .background(.orange.opacity(0.15))
+                        .clipShape(Capsule())
+                }
                 let ready = appState.players.filter(\.isReady).count
                 Text("\(ready) / \(appState.players.count) 準備完了")
                     .font(.subheadline)
@@ -136,7 +151,7 @@ private struct TimerHeaderSection: View {
             }
             .padding(.horizontal)
 
-            TimerBar(progress: progress)
+            TimerBar(progress: progress, gradient: themeManager.current.timerGradient)
                 .frame(height: 10)
                 .padding(.horizontal)
         }
@@ -177,6 +192,7 @@ private struct RoomCodeBadge: View {
 
 private struct PlayerGridSection: View {
     @EnvironmentObject var appState: AppState
+    @State private var shakeAmount: CGFloat = 0
 
     var body: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 82))], spacing: 10) {
@@ -186,6 +202,14 @@ private struct PlayerGridSection: View {
                     isMe: player.id == appState.myPlayerId,
                     revealed: appState.phase == .revealed
                 )
+                .modifier(ShakeEffect(animatableData: shakeAmount))
+            }
+        }
+        .onChange(of: appState.phase) { newPhase in
+            if newPhase == .revealed {
+                withAnimation(.linear(duration: 0.5)) { shakeAmount = 1 }
+            } else {
+                shakeAmount = 0
             }
         }
     }

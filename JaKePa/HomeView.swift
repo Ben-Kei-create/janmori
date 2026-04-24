@@ -2,8 +2,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var themeManager: ThemeManager
 
-    private enum Dest: Hashable { case room }
+    private enum Dest: Hashable { case room, stats }
     @State private var navigateTo: Dest?
     @State private var joinCode = ""
     @State private var showSettings = false
@@ -23,7 +24,7 @@ struct HomeView: View {
                             .font(.system(size: 60, weight: .black, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.orange, .pink, .purple],
+                                    colors: themeManager.current.logoGradient,
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -50,7 +51,7 @@ struct HomeView: View {
                                 .font(.title2.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(.orange)
+                                .background(themeManager.current.primary)
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
                         }
@@ -60,9 +61,19 @@ struct HomeView: View {
                                 .font(.title2.bold())
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(.purple)
+                                .background(themeManager.current.secondary)
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
+                        }
+
+                        Button { navigateTo = .stats } label: {
+                            Label("統計", systemImage: "chart.bar.fill")
+                                .font(.subheadline.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .background(Color(.systemGray6))
+                                .foregroundStyle(.primary)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                     }
                     .padding(.horizontal, 32)
@@ -77,7 +88,12 @@ struct HomeView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
             }
-            .navigationDestination(item: $navigateTo) { _ in RoomView() }
+            .navigationDestination(item: $navigateTo) { dest in
+                switch dest {
+                case .room:  RoomView()
+                case .stats: StatsView()
+                }
+            }
             // Host: settings sheet → creates room → navigate
             .sheet(isPresented: $showSettings) {
                 SettingsView {
@@ -86,6 +102,7 @@ struct HomeView: View {
                         navigateTo = .room
                     }
                 }
+                .environmentObject(themeManager)
             }
             // Guest: join sheet
             .sheet(isPresented: $showJoinSheet) {
