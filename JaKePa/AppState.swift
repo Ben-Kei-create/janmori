@@ -427,8 +427,8 @@ class AppState: ObservableObject {
     /// Returns error message if invalid, nil on success
     func changeName(_ newName: String) -> String? {
         switch NameFilter.validate(newName) {
-        case .failure(let reason):
-            return reason
+        case .failure(let e):
+            return e.message
         case .success(let clean):
             guard let idx = players.firstIndex(where: { $0.id == myPlayerId }) else { return nil }
             let count = players[idx].nameChangeCount

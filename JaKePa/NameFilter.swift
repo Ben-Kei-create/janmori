@@ -1,5 +1,10 @@
 import Foundation
 
+struct NameValidationError: Error {
+    let message: String
+    init(_ message: String) { self.message = message }
+}
+
 struct NameFilter {
     private static let blocklist: [String] = [
         // Japanese
@@ -12,19 +17,19 @@ struct NameFilter {
         "nigger", "nigga", "faggot", "whore", "slut",
     ]
 
-    static func validate(_ name: String) -> Result<String, String> {
+    static func validate(_ name: String) -> Result<String, NameValidationError> {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
 
         if trimmed.isEmpty {
-            return .failure("名前を入力してください")
+            return .failure(NameValidationError("名前を入力してください"))
         }
         if trimmed.count > 12 {
-            return .failure("12文字以内で入力してください")
+            return .failure(NameValidationError("12文字以内で入力してください"))
         }
 
         let lowered = trimmed.lowercased()
         for word in blocklist where lowered.contains(word.lowercased()) {
-            return .failure("その名前は使用できません🙅")
+            return .failure(NameValidationError("その名前は使用できません🙅"))
         }
 
         return .success(trimmed)
